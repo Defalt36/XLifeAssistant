@@ -1,0 +1,113 @@
+#!/bin/bash
+
+if [ "${BASH_SOURCE-}" = "$0" ]; then
+    echo "You must source this script: \$ source $0" >&2
+    exit 33
+fi
+
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+source $SCRIPT_DIR/settings.sh
+
+chmod u+x -R .
+
+function testgame {
+    if [ $# -ne 1 ] ; then
+        echo "Invalid arguments."
+        return
+    fi
+    if [ $1 == "linux" ] ; then
+        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; ./OneLife )
+    elif [ $1 == "windows"] ; then
+        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; OneLife.exe )
+    fi
+}
+function testserver {
+    if [ $# -ne 1 ] ; then
+        echo "Invalid arguments."
+        return
+    fi
+    if [ $1 == "linux" ] ; then
+        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; ./OneLifeServer )
+    elif [ $1 == "windows"] ; then
+        (cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; OneLifeServer.exe )
+    fi
+}
+function runtest {
+    $SCRIPT_DIR/scripts/makeTestBuild.sh $TARGETSYSTEM
+    testgame $TARGETSYSTEM & testserver $TARGETSYSTEM
+}
+function buildgame {
+    ( cd $GAMEDIR/gameSource ; make )
+}
+function buildeditor {
+    ( cd $GAMEDIR/gameSource ; ./makeEditor.sh )
+}
+function buildserver {
+    ( cd $GAMEDIR/server ; make )
+}
+function buildall {
+    buildgame
+    buildeditor
+    buildserver
+}
+
+
+function xla {
+    # Update TIMESTAMP everytime we want to run a script
+    export TIMESTAMP=$(date '+(%F,%H%M)')
+    if [ $# -lt 1 ] ; then
+        echo "Usage: xla [SCRIPT_NAME]"
+    else
+        if find $SCRIPT_DIR/scripts -iname "$1.sh" -exec false {} +
+        then
+            echo "No script $1 found."
+        else
+            find $SCRIPT_DIR/scripts -iname "$1.sh" -exec echo -e "Running: {}\n" \; -exec {} ${@:2} \;
+        fi
+    fi
+}
+
+function xla-cat {
+    find $SCRIPT_DIR/scripts -iname "$1.sh" -exec cat {} \;
+}
+
+function xlacd {
+    if [ $# -ne 1 ] ; then
+        echo "Invalid arguments."
+        return
+    fi
+    if [ $1 == "assistant" ] ; then
+        cd $ASSISTANTDIR
+    elif [ $1 == "scripts" ] ; then
+        cd $ASSISTANTDIR/scripts
+    elif [ $1 == "minorgems" ] ; then
+        cd $MINORDIR
+    elif [ $1 == "onelife" ] ; then
+        cd $GAMEDIR
+    elif [ $1 == "onelifedata" ] ; then
+        cd $DATADIR
+    fi
+}
+
+function reloadxla {
+    source $SCRIPT_DIR/start
+}
+
+
+echo
+echo -e "The following functions can be used:\n"
+#declare -F | awk '{print $NF}' | sort | egrep -v "^_"
+echo -e "buildall\nbuildeditor\nbuildgame\ncustomsettings\ndefaultsettings\nruntest\nsetsetting\ntestgame\ntestserver\nxla\nxla-cat"
+
+echo
+echo -e "The following scripts are avaliable:\n"
+find $SCRIPT_DIR/scripts -type f -exec basename -s .sh {} \;
+
+echo
+echo "You can use the xla function to run scripts above."
+
+echo
+
+

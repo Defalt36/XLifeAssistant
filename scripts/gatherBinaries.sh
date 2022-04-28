@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if [ $# -ne 3 ] ; then
+	echo "You must use three arguments. Open ${0##*/} in a file editor for more info."
+	# First argument: Target 'linux' or 'windows'
+	# Second argument: Binaries 'game', 'editor', 'server' or 'all'
+	# Third argument: Destination
+	exit
+fi
+
+
+target=$1
+binaries=$2
+destination=$3
+
+source=$GAMEDIR
+
+if [ $target == "windows" ] ; then
+	cp $GAMEDIR/build/win32/*.DLL $destination
+fi
+
+if [ $binaries == "game" ] || [ $binaries == "all" ] ; then
+    if [ $target == "linux" ] ; then
+        cp $source/gameSource/OneLife $destination/OneLife
+    elif [ $target == "windows" ] ; then
+        cp $source/gameSource/OneLife.exe $destination/OneLife.exe
+    fi
+fi
+if [ $binaries == "editor" ] || [ $binaries == "all" ] ; then
+    if [ $target == "linux" ] ; then
+        cp $source/gameSource/EditOneLife $destination/EditOneLife
+    elif [ $target == "windows" ] ; then
+        cp $source/gameSource/EditOneLife.exe $destination/EditOneLife.exe
+    fi
+fi
+if [ $binaries == "server" ] || [ $binaries == "all" ] ; then
+    if [ $target == "linux" ] ; then
+        cp $source/server/OneLifeServer $destination/OneLifeServer
+    elif [ $target == "windows" ] ; then
+        cp $source/server/OneLifeServer.exe $destination/OneLifeServer.exe
+    fi
+fi
