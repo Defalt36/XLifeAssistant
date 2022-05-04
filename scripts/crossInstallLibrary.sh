@@ -23,12 +23,12 @@ cd $LIBRARYDIR
 if [ $library = "libz" ] ; then
 	echo
 	echo "Preparing LibZ..."
-	rm -rf zlib-1.2.11
-	wget https://zlib.net/zlib-1.2.11.tar.gz -O- | tar xfz -
-	cd zlib-1.2.11
+	rm -rf zlib-1.2.12
+	wget https://zlib.net/zlib-1.2.12.tar.gz -O- | tar xfz -
+	cd zlib-1.2.12
 	sudo make -f win32/Makefile.gcc BINARY_PATH=$prefixdir/bin INCLUDE_PATH=$prefixdir/include LIBRARY_PATH=$prefixdir/lib SHARED_MODE=1 PREFIX=$host- install
 	cd ..
-	mv zlib-1.2.11 zlib-1.2.11_source
+	mv zlib-1.2.12 zlib-1.2.12_source
 fi
 
 
