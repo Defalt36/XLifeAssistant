@@ -1,6 +1,6 @@
 #!/bin/sh
 
-### To avoid installing something you will not run the commands manually
+### To avoid installing something you do not want run the commands manually
 
 cd $WORKDIR
 
