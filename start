@@ -97,6 +97,21 @@ function x-cd {
     fi
 }
 
+function x-reconfigure {
+    local setting
+    local default_value
+    local prompt
+    local list_item
+    local list="TARGETSYSTEM RELEASENAME REMOTEGAME_USER REMOTEGAME_BRANCH REMOTEMINOR_USER REMOTEMINOR_BRANCH REMOTEDATA_USER REMOTEDATA_BRANCH"
+  
+    for list_item in $list; do
+        setting="export $list_item="
+        default_value=$(grep "$setting" defaultsettings.sh | sed 's/.*=//')
+        read -e -p "$list_item= " -i "$default_value" prompt
+        sed -i "/$setting/ s/=.*/=$prompt/" settings.sh
+    done
+}
+
 function x-reload {
     source $SCRIPT_DIR/start
 }
@@ -105,7 +120,7 @@ function x-reload {
 echo
 echo -e "The following functions can be used:\n"
 #declare -F | awk '{print $NF}' | sort | egrep -v "^_"
-echo -e "customsettings\ndefaultsettings\nmakeall\nmakeeditor\nmakegame\nmakeserver\nruntest\nsetsetting\ntestgame\ntestserver\nx-cat\nx-cd\nx-reload\nxla"
+cat info-commands.txt
 
 echo
 echo -e "The following scripts are avaliable:\n"
