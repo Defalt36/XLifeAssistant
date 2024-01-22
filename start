@@ -13,7 +13,7 @@ source $SCRIPT_DIR/settings.sh
 chmod u+x -R .
 
 function defaultsettings {
-    cp -f $ASSISTANTDIR/defaultsettings.sh $ASSISTANTDIR/settings.sh
+    cp -f $SCRIPT_DIR/defaultsettings.sh $SCRIPT_DIR/settings.sh
     echo "settings.sh replaced by defaultsettings.sh"
 }
 

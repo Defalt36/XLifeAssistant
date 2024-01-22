@@ -30,11 +30,11 @@ export TESTBUILDNAME=XLife_test
 export BUILDSDIR=$WORKDIR/builds
 export LIBRARYDIR=$WORKDIR/libraries
 
-if [ -z $BUILDSDIR ] ; then
+if [ ! -d $BUILDSDIR ] ; then
     mkdir $BUILDSDIR
 fi
 
-if [ -z $LIBRARYDIR ] ; then
+if [ ! -d $LIBRARYDIR ] ; then
     mkdir $LIBRARYDIR
 fi
 
