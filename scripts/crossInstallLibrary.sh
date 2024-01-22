@@ -36,9 +36,9 @@ if [ $library = "libpng" ] ; then
 	#LibPng won't install propely if Zlib isn't installed fist
 	echo
 	echo "Preparing LibPNG..."
-	rm -rf libpng-1.6.37
-	wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.37/libpng-1.6.37.tar.gz -O- | tar xfz -
-	cd libpng-1.6.37
+	rm -rf libpng-1.6.40
+	wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.40/libpng-1.6.40.tar.gz -O- | tar xfz -
+	cd libpng-1.6.40
 	./configure \
 		--host=$host \
 		--prefix=$prefixdir \
@@ -47,7 +47,7 @@ if [ $library = "libpng" ] ; then
 	make
 	sudo make install
 	cd ..
-	mv libpng-1.6.37 libpng-1.6.37_source
+	mv libpng-1.6.40 libpng-1.6.40_source
 fi
 
 if [ $library = "libsdl" ] ; then
@@ -73,9 +73,9 @@ fi
 if [ $library = "libfreetype" ] ; then
 	echo
 	echo "Preparing FreeType2..."
-	rm -rf freetype-2.11.1
-	wget https://downloads.sourceforge.net/project/freetype/freetype2/2.11.1/freetype-2.11.1.tar.gz -O- | tar xfz -
-	cd freetype-2.11.1
+	rm -rf freetype-2.13.2
+	wget https://downloads.sourceforge.net/project/freetype/freetype2/2.13.2/freetype-2.13.2.tar.gz -O- | tar xfz -
+	cd freetype-2.13.2
 	./configure \
 		--prefix=$prefixdir \
 		--build=$build \
@@ -86,7 +86,7 @@ if [ $library = "libfreetype" ] ; then
 	make
 	sudo make install
 	cd ..
-	mv freetype-2.11.1 freetype-2.11.1_source
+	mv freetype-2.13.2 freetype-2.13.2_source
 fi
 
 
