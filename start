@@ -6,14 +6,14 @@ if [ "${BASH_SOURCE-}" = "$0" ]; then
 fi
 
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+START_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-source $SCRIPT_DIR/settings.sh
+source $START_DIR/settings.sh
 
-chmod u+x -R .
+chmod u+x -R $START_DIR
 
 function defaultsettings {
-    cp -f $SCRIPT_DIR/defaultsettings.sh $SCRIPT_DIR/settings.sh
+    cp -f $START_DIR/defaultsettings.sh $START_DIR/settings.sh
     echo "settings.sh replaced by defaultsettings.sh"
 }
 
@@ -40,7 +40,7 @@ function testserver {
     fi
 }
 function runtest {
-    $SCRIPT_DIR/scripts/makeTestBuild.sh $TARGETSYSTEM
+    $START_DIR/scripts/makeTestBuild.sh $TARGETSYSTEM
     testgame $TARGETSYSTEM & testserver $TARGETSYSTEM
 }
 function makegame {
@@ -65,17 +65,17 @@ function xla {
     if [ $# -lt 1 ] ; then
         echo "Usage: xla [SCRIPT_NAME]"
     else
-        if find $SCRIPT_DIR/scripts -iname "$1.sh" -exec false {} +
+        if find $START_DIR/scripts -iname "$1.sh" -exec false {} +
         then
             echo "No script $1 found."
         else
-            find $SCRIPT_DIR/scripts -iname "$1.sh" -exec echo -e "Running: {}\n" \; -exec {} ${@:2} \;
+            find $START_DIR/scripts -iname "$1.sh" -exec echo -e "Running: {}\n" \; -exec {} ${@:2} \;
         fi
     fi
 }
 
 function x-cat {
-    find $SCRIPT_DIR/scripts -iname "$1.sh" -exec cat {} \;
+    find $START_DIR/scripts -iname "$1.sh" -exec cat {} \;
     echo
 }
 
@@ -113,18 +113,18 @@ function x-reconfigure {
 }
 
 function x-reload {
-    source $SCRIPT_DIR/start
+    source $START_DIR/start
 }
 
 
 echo
 echo -e "The following functions can be used:\n"
 #declare -F | awk '{print $NF}' | sort | egrep -v "^_"
-cat info-commands.txt
+cat $START_DIR/info-commands.txt
 
 echo
 echo -e "The following scripts are avaliable:\n"
-find $SCRIPT_DIR/scripts -type f -exec basename -s .sh {} \;
+find $START_DIR/scripts -type f -exec basename -s .sh {} \;
 
 echo
 echo "You can use the xla function to run scripts above."

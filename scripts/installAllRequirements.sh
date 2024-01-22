@@ -10,7 +10,9 @@ sudo apt-get --assume-yes install mingw-w64
 sudo apt-get --assume-yes install build-essential
 sudo apt-get --assume-yes install p7zip-full
 
-./crossInstallLibraries.sh libz
-./crossInstallLibraries.sh libpng
-./crossInstallLibraries.sh libsdl
-./crossInstallLibraries.sh libfreetype
+cd $SCRIPTSDIR
+
+./crossInstallLibrary.sh libz
+./crossInstallLibrary.sh libpng
+./crossInstallLibrary.sh libsdl
+./crossInstallLibrary.sh libfreetype

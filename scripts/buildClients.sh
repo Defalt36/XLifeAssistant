@@ -1,12 +1,12 @@
 #!/bin/bash
 
-pushd
+cd $SCRIPTSDIR
 
 ### CLEANING
 ./cleanBuilds.sh
 
 ### LINUX
-RELEASEDIR = $BUILDSDIR/$RELEASENAME_$TIMESTAMP_linux
+RELEASEDIR=$BUILDSDIR/$RELEASENAME_$TIMESTAMP_linux
 
 cd $GAMEDIR
 
@@ -16,7 +16,7 @@ chmod u+x configure
 cd gameSource
 make || exit 1
 
-popd
+cd $SCRIPTSDIR
 
 ./gatherData.sh all $RELEASEDIR copy
 ./gatherBuildFiles.sh game $RELEASEDIR
@@ -30,7 +30,7 @@ ln -sf $RELEASEDIR $RELEASENAME
 ./cleanBuilds.sh
 
 ### WINDOWS
-RELEASEDIR = $BUILDSDIR/$RELEASENAME_$TIMESTAMP_windows
+RELEASEDIR=$BUILDSDIR/$RELEASENAME_$TIMESTAMP_windows
 
 cd $GAMEDIR
 
@@ -40,7 +40,7 @@ chmod u+x configure
 cd gameSource
 make || exit 1
 
-popd
+cd $SCRIPTSDIR
 
 ./gatherData.sh all $RELEASEDIR copy
 ./gatherBuildFiles.sh game $RELEASEDIR

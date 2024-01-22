@@ -1,7 +1,8 @@
 #!/bin/bash
 
-export ASSISTANTDIR=$SCRIPT_DIR
-export WORKDIR=$SCRIPT_DIR/..
+export ASSISTANTDIR=$START_DIR
+export SCRIPTSDIR=$ASSISTANTDIR/scripts
+export WORKDIR=$ASSISTANTDIR/..
 
 export GAMEDIR=$WORKDIR/OneLife
 export MINORDIR=$WORKDIR/minorGems 
