@@ -1,0 +1,15 @@
+The following commands can be used:
+
+defaultsettings......Revert settings.sh to default.
+makeall..............Re-compile all binaries.
+makeeditor...........Re-compile editor binary.
+makegame.............Re-compile game binary.
+makeserver...........Re-compile server binary.
+runtest..............Build game and server and run test.
+testgame.............Run game binary.
+testserver...........Run server binary.
+x-cat................Display script contents.
+x-cd.................Open folders on terminal.
+x-reconfigure........Change assistant settings.
+x-reload.............Reload start script.
+xla..................Used to run scripts.
