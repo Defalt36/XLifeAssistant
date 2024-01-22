@@ -12,9 +12,14 @@ source $SCRIPT_DIR/settings.sh
 
 chmod u+x -R .
 
+function defaultsettings {
+    cp -f $ASSISTANTDIR/defaultsettings.sh $ASSISTANTDIR/settings.sh
+    echo "settings.sh replaced by defaultsettings.sh"
+}
+
 function testgame {
     if [ $# -ne 1 ] ; then
-        echo "Invalid arguments."
+        echo "Parameters: linux or windows."
         return
     fi
     if [ $1 == "linux" ] ; then
@@ -25,7 +30,7 @@ function testgame {
 }
 function testserver {
     if [ $# -ne 1 ] ; then
-        echo "Invalid arguments."
+        echo "Parameters: linux or windows."
         return
     fi
     if [ $1 == "linux" ] ; then
@@ -38,19 +43,19 @@ function runtest {
     $SCRIPT_DIR/scripts/makeTestBuild.sh $TARGETSYSTEM
     testgame $TARGETSYSTEM & testserver $TARGETSYSTEM
 }
-function buildgame {
+function makegame {
     ( cd $GAMEDIR/gameSource ; make )
 }
-function buildeditor {
+function makeeditor {
     ( cd $GAMEDIR/gameSource ; ./makeEditor.sh )
 }
-function buildserver {
+function makeserver {
     ( cd $GAMEDIR/server ; make )
 }
-function buildall {
-    buildgame
-    buildeditor
-    buildserver
+function makeall {
+    makegame
+    makeeditor
+    makeserver
 }
 
 
@@ -76,7 +81,7 @@ function x-cat {
 
 function x-cd {
     if [ $# -ne 1 ] ; then
-        echo "Invalid arguments."
+        echo "Parameters: assistant, scripts, minorgems, onelife or onelifedata"
         return
     fi
     if [ $1 == "assistant" ] ; then
@@ -100,7 +105,7 @@ function x-reload {
 echo
 echo -e "The following functions can be used:\n"
 #declare -F | awk '{print $NF}' | sort | egrep -v "^_"
-echo -e "buildall\nbuildeditor\nbuildgame\ncustomsettings\ndefaultsettings\nruntest\nsetsetting\ntestgame\ntestserver\nx-cat\nx-cd\nx-reload\nxla"
+echo -e "customsettings\ndefaultsettings\nmakeall\nmakeeditor\nmakegame\nmakeserver\nruntest\nsetsetting\ntestgame\ntestserver\nx-cat\nx-cd\nx-reload\nxla"
 
 echo
 echo -e "The following scripts are avaliable:\n"
