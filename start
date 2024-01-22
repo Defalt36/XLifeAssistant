@@ -69,11 +69,12 @@ function xla {
     fi
 }
 
-function xla-cat {
+function x-cat {
     find $SCRIPT_DIR/scripts -iname "$1.sh" -exec cat {} \;
+    echo
 }
 
-function xlacd {
+function x-cd {
     if [ $# -ne 1 ] ; then
         echo "Invalid arguments."
         return
@@ -91,7 +92,7 @@ function xlacd {
     fi
 }
 
-function reloadxla {
+function x-reload {
     source $SCRIPT_DIR/start
 }
 
@@ -99,7 +100,7 @@ function reloadxla {
 echo
 echo -e "The following functions can be used:\n"
 #declare -F | awk '{print $NF}' | sort | egrep -v "^_"
-echo -e "buildall\nbuildeditor\nbuildgame\ncustomsettings\ndefaultsettings\nruntest\nsetsetting\ntestgame\ntestserver\nxla\nxla-cat"
+echo -e "buildall\nbuildeditor\nbuildgame\ncustomsettings\ndefaultsettings\nruntest\nsetsetting\ntestgame\ntestserver\nx-cat\nx-cd\nx-reload\nxla"
 
 echo
 echo -e "The following scripts are avaliable:\n"
