@@ -38,7 +38,7 @@ function testserver {
     if [ $1 == "linux" ] ; then
         cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
         ./OneLifeServer
-    elif [ $1 == "windows"] ; then
+    elif [ $1 == "windows" ] ; then
         cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
         ./OneLifeServer.exe
     fi
