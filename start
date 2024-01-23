@@ -107,17 +107,19 @@ function x-platform {
 
 function x-reconfigure {
     local setting
-    local default_value
+    local old_value
     local prompt
     local list_item
     local list="TARGETSYSTEM RELEASENAME REMOTEGAME_USER REMOTEGAME_BRANCH REMOTEMINOR_USER REMOTEMINOR_BRANCH REMOTEDATA_USER REMOTEDATA_BRANCH"
   
     for list_item in $list; do
         setting="export $list_item="
-        default_value=$(grep "$setting" defaultsettings.sh | sed 's/.*=//')
-        read -e -p "$list_item= " -i "$default_value" prompt
+        old_value=$(grep "$setting" settings.sh | sed 's/.*=//')
+        read -e -p "$list_item= " -i "$old_value" prompt
         sed -i "/$setting/ s/=.*/=$prompt/" settings.sh
     done
+    
+    source $START_DIR/settings.sh
 }
 
 function x-reload {
