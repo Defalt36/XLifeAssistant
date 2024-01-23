@@ -16,7 +16,7 @@ destination=$3
 source=$GAMEDIR
 
 if [ $target == "windows" ] ; then
-	cp $GAMEDIR/build/win32/*.DLL $destination
+	cp $GAMEDIR/build/win32/*.dll $destination
 fi
 
 if [ $binaries == "game" ] || [ $binaries == "all" ] ; then

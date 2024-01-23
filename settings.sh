@@ -25,11 +25,11 @@ export REMOTEDATA=OneLifeData7
 export REMOTEDATA_USER=twohoursonelife
 export REMOTEDATA_BRANCH=master
 
-export TESTBUILDFOLDER=$ASSISTANTDIR
-export TESTBUILDNAME=XLife_test
-
 export BUILDSDIR=$WORKDIR/builds
 export LIBRARYDIR=$WORKDIR/libraries
+
+export TESTBUILDFOLDER=$BUILDSDIR
+export TESTBUILDNAME=XLife_test
 
 if [ ! -d $BUILDSDIR ] ; then
     mkdir $BUILDSDIR

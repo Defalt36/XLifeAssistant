@@ -1,7 +1,8 @@
 #!/bin/bash
 
-export ASSISTANTDIR=$SCRIPT_DIR
-export WORKDIR=$SCRIPT_DIR/..
+export ASSISTANTDIR=$START_DIR
+export SCRIPTSDIR=$ASSISTANTDIR/scripts
+export WORKDIR=$ASSISTANTDIR/..
 
 export GAMEDIR=$WORKDIR/OneLife
 export MINORDIR=$WORKDIR/minorGems 
@@ -24,11 +25,11 @@ export REMOTEDATA=OneLifeData7
 export REMOTEDATA_USER=twohoursonelife
 export REMOTEDATA_BRANCH=master
 
-export TESTBUILDFOLDER=$ASSISTANTDIR
-export TESTBUILDNAME=XLife_test
-
 export BUILDSDIR=$WORKDIR/builds
 export LIBRARYDIR=$WORKDIR/libraries
+
+export TESTBUILDFOLDER=$BUILDSDIR
+export TESTBUILDNAME=XLife_test
 
 if [ ! -d $BUILDSDIR ] ; then
     mkdir $BUILDSDIR
