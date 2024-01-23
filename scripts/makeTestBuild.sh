@@ -44,18 +44,18 @@ cd $SCRIPTSDIR
 ./gatherBinaries.sh $target all $TESTDIR
 
 echo 0 > $TESTDIR/settings/fullscreen.ini
-echo 1 > $TESTDIR/settings/userCustomServer.ini
+echo 1 > $TESTDIR/settings/useCustomServer.ini
 echo localhost > $TESTDIR/settings/CustomServerAddress.ini
 echo 8005 > $TESTDIR/settings/customServerPort.ini
 echo 1 > $TESTDIR/settings/vogModeOn.ini
 echo 1 > $TESTDIR/settings/tutorialDone.ini
-echo "SOMEONE" > $TESTDIR/settings/email.ini
-echo "SOMETHING" > $TESTDIR/settings/password.ini
+echo "ELITE" > $TESTDIR/settings/email.ini
+echo "31337" > $TESTDIR/settings/password.ini
 
 echo 0 > $TESTDIR/settings/requireTicketServerCheck.ini
 echo 1 > $TESTDIR/settings/useTestMap.ini
 echo 1 > $TESTDIR/settings/allowVOGMode.ini
 echo 1 > $TESTDIR/settings/allowMapRequests.ini
-echo "SOMEONE" > $TESTDIR/settings/vogAllowAccounts.ini
+echo "ELITE" > $TESTDIR/settings/vogAllowAccounts.ini
 
 
