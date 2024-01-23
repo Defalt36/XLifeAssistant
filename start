@@ -118,9 +118,9 @@ function x-reconfigure {
   
     for list_item in $list; do
         setting="export $list_item="
-        old_value=$(grep "$setting" settings.sh | sed 's/.*=//')
+        old_value=$(grep "$setting" $START_DIR/settings.sh | sed 's/.*=//')
         read -e -p "$list_item= " -i "$old_value" prompt
-        sed -i "/$setting/ s/=.*/=$prompt/" settings.sh
+        sed -i "/$setting/ s/=.*/=$prompt/" $START_DIR/settings.sh
     done
     
     source $START_DIR/settings.sh
