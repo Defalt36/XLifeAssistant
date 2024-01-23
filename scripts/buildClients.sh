@@ -7,6 +7,7 @@ cd $SCRIPTSDIR
 
 ### LINUX
 RELEASEDIR=$BUILDSDIR/$RELEASENAME-$TIMESTAMP-linux
+mkdir $RELEASEDIR
 
 cd $GAMEDIR
 
@@ -22,7 +23,7 @@ cd $SCRIPTSDIR
 ./gatherBuildFiles.sh game $RELEASEDIR
 ./gatherBinaries.sh linux game $RELEASEDIR
 
-ln -sf $RELEASEDIR $RELEASENAME
+#ln -sf $RELEASEDIR $RELEASENAME
 
 7z a $RELEASEDIR.zip $RELEASENAME
 
@@ -46,7 +47,7 @@ cd $SCRIPTSDIR
 ./gatherBuildFiles.sh game $RELEASEDIR
 ./gatherBinaries.sh windows game $RELEASEDIR
 
-ln -sf $RELEASEDIR $RELEASENAME
+#ln -sf $RELEASEDIR $RELEASENAME
 
 7z a $RELEASEDIR.zip $RELEASENAME
 
