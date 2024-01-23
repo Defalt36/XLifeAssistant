@@ -44,8 +44,8 @@ if [ $library = "libpng" ] ; then
 	./configure \
 		--host=$host \
 		--prefix=$prefixdir \
-		CPPFLAGS="-I$prefixdir/include" \
-		LDFLAGS="-L$prefixdir/lib"
+		CPPFLAGS="-I${prefixdir}/include" \
+		LDFLAGS="-L${prefixdir}/lib"
 	make
 	sudo make install
 	cd ..
@@ -64,8 +64,8 @@ if [ $library = "libsdl" ] ; then
 		--includedir=$prefixdir/include \
 		--host=i686-w64-mingw32 \
 		--prefix=$prefixdir \
-		CPPFLAGS="-I$prefixdir/include" \
-		LDFLAGS="-L$prefixdir/lib"
+		CPPFLAGS="-I${prefixdir}/include" \
+		LDFLAGS="-L${prefixdir}/lib"
 	make
 	sudo make install
 	cd ..
@@ -76,14 +76,15 @@ if [ $library = "libfreetype" ] ; then
 	echo
 	echo "Preparing FreeType2..."
 	rm -rf freetype-2.13.2
+	#wget https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.gz -O- | tar xfz -
 	wget https://downloads.sourceforge.net/project/freetype/freetype2/2.13.2/freetype-2.13.2.tar.gz -O- | tar xfz -
 	cd freetype-2.13.2
 	./configure \
 		--prefix=$prefixdir \
 		--build=$build \
 		--host=$host \
-		CPPFLAGS="-I$prefixdir/include" \
-		LDFLAGS="-L$prefixdir/lib" \
+		CPPFLAGS="-I${prefixdir}/include" \
+		LDFLAGS="-L${prefixdir}/lib" \
 		PKG_CONFIG_LIBDIR=$prefixdir/lib/pkgconfig
 	make
 	sudo make install
