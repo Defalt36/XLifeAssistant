@@ -97,6 +97,14 @@ function x-cd {
     fi
 }
 
+function x-platform {
+    cd $GAMEDIR
+    ./configure
+    cd $GAMEDIR/server
+    ./configure
+    cd $START_DIR
+}
+
 function x-reconfigure {
     local setting
     local default_value
