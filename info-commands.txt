@@ -1,5 +1,3 @@
-The following commands can be used:
-
 defaultsettings......Revert settings.sh to default.
 makeall..............Re-compile all binaries.
 makeeditor...........Re-compile editor binary.
