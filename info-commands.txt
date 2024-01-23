@@ -10,6 +10,7 @@ testgame.............Run game binary.
 testserver...........Run server binary.
 x-cat................Display script contents.
 x-cd.................Open folders on terminal.
+x-platform...........Run configure files from game.
 x-reconfigure........Change assistant settings.
 x-reload.............Reload start script.
 xla..................Used to run scripts.

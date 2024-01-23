@@ -23,9 +23,11 @@ function testgame {
         return
     fi
     if [ $1 == "linux" ] ; then
-        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; ./OneLife )
-    elif [ $1 == "windows"] ; then
-        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; OneLife.exe )
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
+        ./OneLife
+    elif [ $1 == "windows" ] ; then
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
+        ./OneLife.exe
     fi
 }
 function testserver {
@@ -34,9 +36,11 @@ function testserver {
         return
     fi
     if [ $1 == "linux" ] ; then
-        ( cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; ./OneLifeServer )
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
+        ./OneLifeServer
     elif [ $1 == "windows"] ; then
-        (cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1/ ; OneLifeServer.exe )
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$1
+        ./OneLifeServer.exe
     fi
 }
 function runtest {
@@ -138,7 +142,4 @@ find $START_DIR/scripts -type f -exec basename -s .sh {} \;
 
 echo
 echo "You can use the xla function to run scripts above."
-
 echo
-
-
