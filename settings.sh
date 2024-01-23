@@ -11,7 +11,7 @@ export DATADIR=$WORKDIR/OneLifeData7
 
 export TIMESTAMP=$(date '+(%F,%H%M)')
 export RELEASENAME=OneLife
-export TARGETSYSTEM=linux
+export TARGETSYSTEM=windows
 
 export REMOTEGAME=OneLife
 export REMOTEGAME_USER=twohoursonelife
@@ -39,4 +39,8 @@ if [ ! -d $LIBRARYDIR ] ; then
     mkdir $LIBRARYDIR
 fi
 
-
+if [ $TARGETSYSTEM == "windows" ] ; then
+    if [[ ! ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
+        export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+    fi
+fi
