@@ -49,13 +49,13 @@ echo localhost > $TESTDIR/settings/CustomServerAddress.ini
 echo 8005 > $TESTDIR/settings/customServerPort.ini
 echo 1 > $TESTDIR/settings/vogModeOn.ini
 echo 1 > $TESTDIR/settings/tutorialDone.ini
-echo "ELITE" > $TESTDIR/settings/email.ini
-echo "31337" > $TESTDIR/settings/password.ini
+echo "USER" > $TESTDIR/settings/email.ini
+echo "PASS" > $TESTDIR/settings/password.ini
 
 echo 0 > $TESTDIR/settings/requireTicketServerCheck.ini
 echo 1 > $TESTDIR/settings/useTestMap.ini
 echo 1 > $TESTDIR/settings/allowVOGMode.ini
 echo 1 > $TESTDIR/settings/allowMapRequests.ini
-echo "ELITE" > $TESTDIR/settings/vogAllowAccounts.ini
+echo "USER" > $TESTDIR/settings/vogAllowAccounts.ini
 
 
