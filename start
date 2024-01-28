@@ -18,25 +18,35 @@ function defaultsettings {
 }
 
 function testgame {
+    local platform=$1
     if [ $# -ne 1 ] ; then
-        echo "Parameters: linux or windows."
-        return
+        echo "No parameters provided, assuming: '$TARGETSYSTEM'."
+        platform=$TARGETSYSTEM
     fi
-    if [ $1 == "linux" ] ; then
-        ./$TESTBUILDFOLDER/$TESTBUILDNAME-$1/OneLife
-    elif [ $1 == "windows" ] ; then
-        ./$TESTBUILDFOLDER/$TESTBUILDNAME-$1/OneLife.exe
+    if [ $platform == "linux" ] ; then
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        ./OneLife
+        cd -
+    elif [ $platform == "windows" ] ; then
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        ./OneLife.exe
+        cd -
     fi
 }
 function testserver {
+    local platform=$1
     if [ $# -ne 1 ] ; then
-        echo "Parameters: linux or windows."
-        return
+        echo "No parameters provided, assuming: '$TARGETSYSTEM'."
+        platform = $TARGETSYSTEM
     fi
-    if [ $1 == "linux" ] ; then
-        ./$TESTBUILDFOLDER/$TESTBUILDNAME-$1/OneLifeServer
-    elif [ $1 == "windows" ] ; then
-        ./$TESTBUILDFOLDER/$TESTBUILDNAME-$1/OneLifeServer.exe
+    if [ $platform == "linux" ] ; then
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        ./OneLifeServer
+        cd -
+    elif [ $platform == "windows" ] ; then
+        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        ./OneLifeServer.exe
+        cd -
     fi
 }
 function runtest {
