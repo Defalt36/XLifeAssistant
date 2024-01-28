@@ -33,7 +33,13 @@ if [ $library = "libz" ] ; then
 	fi
 	
 	cd zlib-1.3.1
-	sudo make -f win32/Makefile.gcc BINARY_PATH=$prefixdir/bin INCLUDE_PATH=$prefixdir/include LIBRARY_PATH=$prefixdir/lib SHARED_MODE=1 PREFIX=$host- install
+	sudo make -f win32/Makefile.gcc \
+		BINARY_PATH=$prefixdir/bin \
+		INCLUDE_PATH=$prefixdir/include \
+		LIBRARY_PATH=$prefixdir/lib \
+		SHARED_MODE=1 \
+		PREFIX=$host- \
+		install
 	cd ..
 	rm -rf zlib-1.3.1-source
 	mv zlib-1.3.1 zlib-1.3.1-source
@@ -83,7 +89,7 @@ if [ $library = "libsdl" ] ; then
 		--bindir=$prefixdir/bin \
 		--libdir=$prefixdir/lib \
 		--includedir=$prefixdir/include \
-		--host=i686-w64-mingw32 \
+		--host=$host \
 		--prefix=$prefixdir \
 		CPPFLAGS="-I${prefixdir}/include" \
 		LDFLAGS="-L${prefixdir}/lib"
@@ -111,6 +117,7 @@ if [ $library = "libfreetype" ] ; then
 		--prefix=$prefixdir \
 		--build=$build \
 		--host=$host \
+		--enable-static \
 		CPPFLAGS="-I${prefixdir}/include" \
 		LDFLAGS="-L${prefixdir}/lib" \
 		PKG_CONFIG_LIBDIR=$prefixdir/lib/pkgconfig
