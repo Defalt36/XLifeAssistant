@@ -13,7 +13,9 @@ mkdir $TESTDIR
 
 cd $GAMEDIR
 
+chmod u+x configure ./configure
 chmod u+x configure ./server/configure
+chmod u+x configure ./gameSource/makeEditor.sh
 
 if [ $target == "linux" ] ; then
 	./configure 1 || exit 1
