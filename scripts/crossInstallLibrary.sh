@@ -23,19 +23,20 @@ cd $LIBRARYDIR
 if [ $library = "libz" ] ; then
 	echo
 	echo "Preparing LibZ..."
-	rm -rf zlib-1.3.1
 	
-	wget https://zlib.net/zlib-1.3.1.tar.gz -O- | tar xfz -
-	# if wget fails try alternative mirror
-	if [ $? -ne 0 ]; then
-		wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.gz -O- | tar xfz -
+	if [ ! -d zlib-1.3.1 ] ; then
+		wget https://zlib.net/zlib-1.3.1.tar.gz -O- | tar xfz -
+		# if wget fails try alternative mirror
+		if [ $? -ne 0 ]; then
+			wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.gz -O- | tar xfz -
+		fi
 	fi
 	
 	cd zlib-1.3.1
 	sudo make -f win32/Makefile.gcc BINARY_PATH=$prefixdir/bin INCLUDE_PATH=$prefixdir/include LIBRARY_PATH=$prefixdir/lib SHARED_MODE=1 PREFIX=$host- install
 	cd ..
-	rm -rf zlib-1.3.1_source
-	mv zlib-1.3.1 zlib-1.3.1_source
+	rm -rf zlib-1.3.1-source
+	mv zlib-1.3.1 zlib-1.3.1-source
 fi
 
 
@@ -43,12 +44,13 @@ if [ $library = "libpng" ] ; then
 	#LibPng won't install propely if Zlib isn't installed fist
 	echo
 	echo "Preparing LibPNG..."
-	rm -rf libpng-1.6.40
 	
-	wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.40/libpng-1.6.40.tar.gz -O- | tar xfz -
-	# if wget fails try alternative mirror
-	if [ $? -ne 0 ]; then
-		wget https://github.com/pnggroup/libpng/archive/refs/tags/v1.6.40.tar.gz -O- | tar xfz -
+	if [ ! -d libpng-1.6.40	] ; then
+		wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.40/libpng-1.6.40.tar.gz -O- | tar xfz -
+		# if wget fails try alternative mirror
+		if [ $? -ne 0 ]; then
+			wget https://github.com/pnggroup/libpng/archive/refs/tags/v1.6.40.tar.gz -O- | tar xfz -
+		fi
 	fi
 	
 	cd libpng-1.6.40
@@ -60,19 +62,20 @@ if [ $library = "libpng" ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf libpng-1.6.40_source
-	mv libpng-1.6.40 libpng-1.6.40_source
+	rm -rf libpng-1.6.40-source
+	mv libpng-1.6.40 libpng-1.6.40-source
 fi
 
 if [ $library = "libsdl" ] ; then
 	echo
 	echo "Preparing LibSDL..."
-	rm -rf SDL-1.2.15
 	
-	wget https://www.libsdl.org/release/SDL-1.2.15.tar.gz -O- | tar xfz -
-	# if wget fails try alternative mirror
-	if [ $? -ne 0 ]; then
-		https://github.com/libsdl-org/SDL-1.2/archive/refs/tags/release-1.2.15.tar.gz
+	if [ ! -d SDL-1.2.15 ] ; then
+		wget https://www.libsdl.org/release/SDL-1.2.15.tar.gz -O- | tar xfz -
+		# if wget fails try alternative mirror
+		if [ $? -ne 0 ]; then
+			wget https://github.com/libsdl-org/SDL-1.2/archive/refs/tags/release-1.2.15.tar.gz -O- | tar xfz -
+		fi
 	fi
 	
 	cd SDL-1.2.15
@@ -87,19 +90,20 @@ if [ $library = "libsdl" ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf SDL-1.2.15_source
-	mv SDL-1.2.15 SDL-1.2.15_source
+	rm -rf SDL-1.2.15-source
+	mv SDL-1.2.15 SDL-1.2.15-source
 fi
 
 if [ $library = "libfreetype" ] ; then
 	echo
 	echo "Preparing FreeType2..."
-	rm -rf freetype-2.13.2
 	
-	wget https://downloads.sourceforge.net/project/freetype/freetype2/2.13.2/freetype-2.13.2.tar.gz -O- | tar xfz -
-	# if wget fails try alternative mirror
-	if [ $? -ne 0 ]; then
-		wget https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.gz -O- | tar xfz -
+	if [ ! -d $LIBRARYDIR/freetype-2.13.2 ] ; then
+		wget https://downloads.sourceforge.net/project/freetype/freetype2/2.13.2/freetype-2.13.2.tar.gz -O- | tar xfz -
+		# if wget fails try alternative mirror
+		if [ $? -ne 0 ]; then
+			wget https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.gz -O- | tar xfz -
+		fi
 	fi
 	
 	cd freetype-2.13.2
@@ -113,8 +117,8 @@ if [ $library = "libfreetype" ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf freetype-2.13.2_source
-	mv freetype-2.13.2 freetype-2.13.2_source
+	rm -rf freetype-2.13.2-source
+	mv freetype-2.13.2 freetype-2.13.2-source
 fi
 
 
