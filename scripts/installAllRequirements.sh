@@ -16,4 +16,4 @@ cd $SCRIPTSDIR
 ./crossInstallLibrary.sh libz
 ./crossInstallLibrary.sh libpng
 ./crossInstallLibrary.sh libsdl
-./crossInstallLibrary.sh libfreetype
+#./crossInstallLibrary.sh libfreetype
