@@ -65,11 +65,12 @@ function xla {
     if [ $# -lt 1 ] ; then
         echo "Usage: xla [SCRIPT_NAME]"
     else
-        if find $START_DIR/scripts -iname "$1.sh" -exec false {} +
-        then
-            echo "No script $1 found."
+        if $(find $START_DIR/scripts -iname "$1.sh" -exec false {} +) ; then
+            echo "No script '$1' found."
+        elif [ $(find $START_DIR/scripts -iname "$1.sh" | wc -l) -ne 1 ] ; then
+            echo "More than one script named '$1'."
         else
-            find $START_DIR/scripts -iname "$1.sh" -exec echo -e "Running: {}\n" \; -exec {} ${@:2} \;
+            find $START_DIR/scripts -iname "$1.sh" -exec echo -e "Running: {}\n" \; -exec {} ${@:2} +
         fi
     fi
 }
