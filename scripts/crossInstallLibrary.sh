@@ -10,7 +10,7 @@ library=$1
 
 build="x86_64-linux-gnu"
 host="i686-w64-mingw32"
-prefixdir="/usr/local/i686-w64-mingw32"
+prefixdir="/usr/i686-w64-mingw32"
 
 # keep the libraries in case you want to uninstall them later
 if [ ! -e $LIBRARYDIR ]
