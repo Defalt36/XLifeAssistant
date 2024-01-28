@@ -40,7 +40,10 @@ if [ ! -d $LIBRARYDIR ] ; then
 fi
 
 if [ $TARGETSYSTEM == "windows" ] ; then
-    if [[ ! ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
-        export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+    if [[ ! ":$PATH:" == *"/usr/local/i686-w64-mingw32/bin:"* ]]; then
+        #export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+        echo -e "\n# add mingw32 binaries to path" >> ~/.bashrc
+        echo 'export PATH="/usr/local/i686-w64-mingw32/bin:${PATH}"' >> ~/.bashrc
+        source ~/.bashrc
     fi
 fi
