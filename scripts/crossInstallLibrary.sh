@@ -34,6 +34,7 @@ if [ $library = "libz" ] ; then
 	cd zlib-1.3.1
 	sudo make -f win32/Makefile.gcc BINARY_PATH=$prefixdir/bin INCLUDE_PATH=$prefixdir/include LIBRARY_PATH=$prefixdir/lib SHARED_MODE=1 PREFIX=$host- install
 	cd ..
+	rm -rf zlib-1.3.1_source
 	mv zlib-1.3.1 zlib-1.3.1_source
 fi
 
@@ -59,6 +60,7 @@ if [ $library = "libpng" ] ; then
 	make
 	sudo make install
 	cd ..
+	rm -rf libpng-1.6.40_source
 	mv libpng-1.6.40 libpng-1.6.40_source
 fi
 
@@ -85,6 +87,7 @@ if [ $library = "libsdl" ] ; then
 	make
 	sudo make install
 	cd ..
+	rm -rf SDL-1.2.15_source
 	mv SDL-1.2.15 SDL-1.2.15_source
 fi
 
@@ -110,6 +113,7 @@ if [ $library = "libfreetype" ] ; then
 	make
 	sudo make install
 	cd ..
+	rm -rf freetype-2.13.2_source
 	mv freetype-2.13.2 freetype-2.13.2_source
 fi
 
