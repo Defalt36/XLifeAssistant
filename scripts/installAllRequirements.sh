@@ -13,7 +13,4 @@ sudo apt-get --assume-yes install p7zip-full
 
 cd $SCRIPTSDIR
 
-./crossInstallLibrary.sh libz
-./crossInstallLibrary.sh libpng
-./crossInstallLibrary.sh libsdl
-#./crossInstallLibrary.sh libfreetype
+./crossInstallLibrary.sh libz libpng libsdl

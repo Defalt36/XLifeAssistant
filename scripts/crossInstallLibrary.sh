@@ -1,12 +1,31 @@
 #!/bin/bash
 
-if [ $# -ne 1 ] ; then
-	echo "You must use one argument. Open ${0##*/} in a file editor for more info."
+if [ $# -le 1 ] ; then
+	echo "You must at least use one argument. Open ${0##*/} in a file editor for more info."
 	# First argument: Library 'libpng', 'libz', 'libsdl' or 'libfreetype'
 	exit
 fi
 
-library=$1
+libz=false
+libpng=false
+libsdl=false
+libfreetype=false
+
+for time in {1..$#} ; do
+    if [[ $1 == "libz" ]] ; then
+        libz=true
+    elif [[ $1 == "libpng" ]] ; then
+        libpng=true
+    elif [[ $1 == "libsdl" ]] ; then
+        libsdl=true
+    elif [[ $1 == "libfreetype" ]] ; then
+        libfreetype=true
+    else
+        echo "No supported library called '${1}'."
+        exit 1
+    fi
+    shift
+done
 
 build="x86_64-linux-gnu"
 host="i686-w64-mingw32"
@@ -20,7 +39,7 @@ fi
 
 cd $LIBRARYDIR
 
-if [ $library = "libz" ] ; then
+if [ $libz ] ; then
 	echo
 	echo "Preparing LibZ..."
 	
@@ -46,7 +65,7 @@ if [ $library = "libz" ] ; then
 fi
 
 
-if [ $library = "libpng" ] ; then
+if [ $libpng ] ; then
 	#LibPng won't install propely if Zlib isn't installed fist
 	echo
 	echo "Preparing LibPNG..."
@@ -72,7 +91,7 @@ if [ $library = "libpng" ] ; then
 	mv libpng-1.6.40 libpng-1.6.40-source
 fi
 
-if [ $library = "libsdl" ] ; then
+if [ $libsdl ] ; then
 	echo
 	echo "Preparing LibSDL..."
 	
@@ -100,7 +119,7 @@ if [ $library = "libsdl" ] ; then
 	mv SDL-1.2.15 SDL-1.2.15-source
 fi
 
-if [ $library = "libfreetype" ] ; then
+if [ $libfreetype ] ; then
 	echo
 	echo "Preparing FreeType2..."
 	
