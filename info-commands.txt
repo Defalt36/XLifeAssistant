@@ -1,4 +1,5 @@
 defaultsettings......Revert settings.sh to default.
+eolfix...............Fix some line endings if cloned on windows.
 makeall..............Re-compile all binaries.
 makeeditor...........Re-compile editor binary.
 makegame.............Re-compile game binary.

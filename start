@@ -68,6 +68,20 @@ function makeall {
     makeserver
 }
 
+function eolfix {
+    echo $GAMEDIR
+
+    find $MINORDIR -name "configure" -type f -exec dos2unix {} +
+    find $GAMEDIR -name "configure" -type f -exec dos2unix {} +
+    
+    find $MINORDIR -name "Makefile*" -type f -exec dos2unix {} +
+    find $GAMEDIR -name "Makefile*" -type f -exec dos2unix {} +
+    
+    find $MINORDIR -name "*.sh" -type f -exec dos2unix {} +
+    find $GAMEDIR -name "*.sh" -type f -exec dos2unix {} +
+    find $DATADIR -name "*.sh" -type f -exec dos2unix {} +
+}
+
 
 function xla {
     # Update TIMESTAMP everytime we want to run a script

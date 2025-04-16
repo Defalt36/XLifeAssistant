@@ -10,6 +10,7 @@ sudo apt-get --assume-yes install mingw-w64
 sudo apt-get --assume-yes install pkg-config
 sudo apt-get --assume-yes install build-essential
 sudo apt-get --assume-yes install p7zip-full
+sudo apt-get --assume-yes install dos2unix
 
 cd $SCRIPTSDIR
 
