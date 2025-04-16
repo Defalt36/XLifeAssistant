@@ -6,22 +6,22 @@ if [ $# -ne 1 ] ; then
 	exit
 fi
 
-target = $1
+target=$1
 
-pushd
-
-RELEASEDIR = $BUILDSDIR/$RELEASENAME_$TIMESTAMP
+RELEASEDIR=$BUILDSDIR/$RELEASENAME_$TIMESTAMP
 
 cd $GAMEDIR
 
-chmod u+x configure /server/configure
+chmod u+x configure ./server/configure
 
 if [ $target == "linux" ] ; then
 	./configure 1 || exit 1
-	./server/configure 1 || exit 1
+    cd server
+	.configure 1 || exit 1
 elif [ $target == "windows" ] ; then
 	./configure 5 || exit 1
-	./server/configure 5 || exit 1
+	cd server
+    ./configure 5 || exit 1
 fi
 
 cd gameSource
@@ -33,7 +33,7 @@ make || exit 1
 cd ../server
 make || exit 1
 
-popd
+cd $SCRIPTSDIR
 
 ./gatherData.sh all $RELEASEDIR copy
 ./gatherBuildFiles.sh game $RELEASEDIR
