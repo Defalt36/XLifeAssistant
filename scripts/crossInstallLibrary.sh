@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -le 1 ] ; then
+if [ $# -lt 1 ] ; then
 	echo "You must at least use one argument. Open ${0##*/} in a file editor for more info."
 	# First argument: Library 'libpng', 'libz', 'libsdl' or 'libfreetype'
 	exit
@@ -39,7 +39,7 @@ fi
 
 cd $LIBRARYDIR
 
-if [ $libz ] ; then
+if [ $libz == "true" ] ; then
 	echo
 	echo "Preparing LibZ..."
 	
@@ -60,12 +60,10 @@ if [ $libz ] ; then
 		PREFIX=$host- \
 		install
 	cd ..
-	rm -rf zlib-1.3.1-source
-	mv zlib-1.3.1 zlib-1.3.1-source
 fi
 
 
-if [ $libpng ] ; then
+if [ $libpng == "true" ] ; then
 	#LibPng won't install propely if Zlib isn't installed fist
 	echo
 	echo "Preparing LibPNG..."
@@ -87,11 +85,9 @@ if [ $libpng ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf libpng-1.6.40-source
-	mv libpng-1.6.40 libpng-1.6.40-source
 fi
 
-if [ $libsdl ] ; then
+if [ $libsdl == "true" ] ; then
 	echo
 	echo "Preparing LibSDL..."
 	
@@ -115,11 +111,9 @@ if [ $libsdl ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf SDL-1.2.15-source
-	mv SDL-1.2.15 SDL-1.2.15-source
 fi
 
-if [ $libfreetype ] ; then
+if [ $libfreetype == "true" ] ; then
 	echo
 	echo "Preparing FreeType2..."
 	
@@ -143,8 +137,6 @@ if [ $libfreetype ] ; then
 	make
 	sudo make install
 	cd ..
-	rm -rf freetype-2.13.2-source
-	mv freetype-2.13.2 freetype-2.13.2-source
 fi
 
 
