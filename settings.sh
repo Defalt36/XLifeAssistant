@@ -2,7 +2,7 @@
 
 export ASSISTANTDIR=$START_DIR
 export SCRIPTSDIR=$ASSISTANTDIR/scripts
-export WORKDIR=$ASSISTANTDIR/..
+export WORKDIR=$(realpath "$ASSISTANTDIR/..")
 
 export GAMEDIR=$WORKDIR/OneLife
 export MINORDIR=$WORKDIR/minorGems 
