@@ -82,6 +82,10 @@ function eolfix {
     find $DATADIR -name "*.sh" -type f -exec dos2unix {} +
 }
 
+function gitfix {
+    sudo ifconfig eth0 mtu 1350
+}
+
 
 function xla {
     # Update TIMESTAMP everytime we want to run a script
