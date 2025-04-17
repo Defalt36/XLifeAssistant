@@ -11,14 +11,14 @@ libpng=false
 libsdl=false
 libfreetype=false
 
-for time in {1..$#} ; do
-    if [[ $1 == "libz" ]] ; then
+for arg in "$@"; do
+    if [[ $arg == "libz" ]] ; then
         libz=true
-    elif [[ $1 == "libpng" ]] ; then
+    elif [[ $arg == "libpng" ]] ; then
         libpng=true
-    elif [[ $1 == "libsdl" ]] ; then
+    elif [[ $arg == "libsdl" ]] ; then
         libsdl=true
-    elif [[ $1 == "libfreetype" ]] ; then
+    elif [[ $arg == "libfreetype" ]] ; then
         libfreetype=true
     else
         echo "No supported library called '${1}'."
