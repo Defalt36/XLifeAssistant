@@ -24,20 +24,20 @@ if [ $binaries == "game" ] || [ $binaries == "all" ] ; then
     if [ $target == "linux" ] ; then
         cp $source/gameSource/OneLife $destination/OneLife
     elif [ $target == "windows" ] ; then
-        cp $source/gameSource/OneLife.exe $destination/OneLife.exe
+        cp "$source/gameSource/OneLife.exe" "$destination/OneLife.exe" 2>/dev/null || cp "$source/gameSource/OneLife" "$destination/OneLife.exe"
     fi
 fi
 if [ $binaries == "editor" ] || [ $binaries == "all" ] ; then
     if [ $target == "linux" ] ; then
         cp $source/gameSource/EditOneLife $destination/EditOneLife
     elif [ $target == "windows" ] ; then
-        cp $source/gameSource/EditOneLife.exe $destination/EditOneLife.exe
+        cp "$source/gameSource/EditOneLife.exe" "$destination/EditOneLife.exe" 2>/dev/null || cp "$source/gameSource/EditOneLife" "$destination/EditOneLife.exe"
     fi
 fi
 if [ $binaries == "server" ] || [ $binaries == "all" ] ; then
     if [ $target == "linux" ] ; then
         cp $source/server/OneLifeServer $destination/OneLifeServer
     elif [ $target == "windows" ] ; then
-        cp $source/server/OneLifeServer.exe $destination/OneLifeServer.exe
+        cp "$source/server/OneLifeServer.exe" "$destination/OneLifeServer.exe" 2>/dev/null || cp "$source/server/OneLifeServer" "$destination/OneLifeServer.exe"
     fi
 fi
