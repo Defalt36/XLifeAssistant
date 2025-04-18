@@ -20,5 +20,3 @@ fi
 cd $SCRIPTSDIR
 
 ./crossInstallLibrary.sh libz libpng libsdl
-
-export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
