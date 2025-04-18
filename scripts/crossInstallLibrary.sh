@@ -43,15 +43,15 @@ if [ $libz == "true" ] ; then
 	echo
 	echo "Preparing LibZ..."
 	
-	if [ ! -d zlib-1.3.1 ] ; then
-		wget https://zlib.net/zlib-1.3.1.tar.gz -O- | tar xfz -
+	if [ ! -d zlib-1.2.12 ] ; then
+		wget http://zlib.net/fossils/zlib-1.2.12.tar.gz -O- | tar xfz -
 		# if wget fails try alternative mirror
 		if [ $? -ne 0 ]; then
-			wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.gz -O- | tar xfz -
+			#wget https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.gz -O- | tar xfz -
 		fi
 	fi
 	
-	cd zlib-1.3.1
+	cd zlib-1.2.12
 	sudo make -f win32/Makefile.gcc \
 		BINARY_PATH=$prefixdir/bin \
 		INCLUDE_PATH=$prefixdir/include \
@@ -68,15 +68,15 @@ if [ $libpng == "true" ] ; then
 	echo
 	echo "Preparing LibPNG..."
 	
-	if [ ! -d libpng-1.6.40	] ; then
-		wget https://downloads.sourceforge.net/project/libpng/libpng16/1.6.40/libpng-1.6.40.tar.gz -O- | tar xfz -
+	if [ ! -d libpng-1.6.37	] ; then
+		wget http://downloads.sourceforge.net/project/libpng/libpng16/1.6.37/libpng-1.6.37.tar.gz -O- | tar xfz -
 		# if wget fails try alternative mirror
 		if [ $? -ne 0 ]; then
-			wget https://github.com/pnggroup/libpng/archive/refs/tags/v1.6.40.tar.gz -O- | tar xfz -
+			wget https://github.com/pnggroup/libpng/archive/refs/tags/v1.6.37.tar.gz -O- | tar xfz -
 		fi
 	fi
 	
-	cd libpng-1.6.40
+	cd libpng-1.6.37
 	./configure \
 		--host=$host \
 		--prefix=$prefixdir \
