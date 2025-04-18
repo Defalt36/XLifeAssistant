@@ -39,7 +39,7 @@ function testserver {
     local platform=$1
     if [ $# -ne 1 ] ; then
         echo "No parameters provided, assuming: '$TARGETSYSTEM'."
-        platform = $TARGETSYSTEM
+        platform=$TARGETSYSTEM
     fi
     if [ $platform == "linux" ] ; then
         cd $TESTBUILDPATH
