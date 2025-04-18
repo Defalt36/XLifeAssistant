@@ -30,8 +30,7 @@ export REMOTEDATA_BRANCH=master
 export BUILDSDIR=$WORKDIR/builds
 export LIBRARYDIR=$WORKDIR/dependencies
 
-export TESTBUILDFOLDER=$BUILDSDIR
-export TESTBUILDNAME=XLife_test
+export TESTBUILDPATH=$BUILDSDIR/TEST_BUILD
 
 if [ ! -d $BUILDSDIR ] ; then
     mkdir $BUILDSDIR

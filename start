@@ -24,11 +24,13 @@ function testgame {
         platform=$TARGETSYSTEM
     fi
     if [ $platform == "linux" ] ; then
-        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        cd $TESTBUILDPATH
+        cp $GAMEDIR/gameSource/OneLife OneLife
         ./OneLife
         cd -
     elif [ $platform == "windows" ] ; then
-        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        cd $TESTBUILDPATH
+        cp "$GAMEDIR/gameSource/OneLife.exe" "OneLife.exe" 2>/dev/null || cp "$GAMEDIR/gameSource/OneLife" "OneLife.exe"
         ./OneLife.exe
         cd -
     fi
@@ -40,11 +42,13 @@ function testserver {
         platform = $TARGETSYSTEM
     fi
     if [ $platform == "linux" ] ; then
-        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        cd $TESTBUILDPATH
+        cp $GAMEDIR/server/OneLifeServer OneLifeServer
         ./OneLifeServer
         cd -
     elif [ $platform == "windows" ] ; then
-        cd $TESTBUILDFOLDER/$TESTBUILDNAME-$platform
+        cd $TESTBUILDPATH
+        cp "$GAMEDIR/server/OneLifeServer.exe" "OneLifeServer.exe" 2>/dev/null || cp "$GAMEDIR/server/OneLifeServer" "OneLifeServer.exe"
         ./OneLifeServer.exe
         cd -
     fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TESTDIR=$TESTBUILDFOLDER/$TESTBUILDNAME-$TARGETSYSTEM
+TESTDIR=$TESTBUILDPATH
 
 ( cd $TESTDIR ; rm -v biome.db eve.db floor.db floorTime.db grave.db lookTime.db map.db mapTime.db meta.db playerStats.db \
 map.db.trunc \
