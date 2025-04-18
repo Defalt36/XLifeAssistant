@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+
 export ASSISTANTDIR=$START_DIR
 export SCRIPTSDIR=$ASSISTANTDIR/scripts
 export WORKDIR=$(realpath "$ASSISTANTDIR/..")
