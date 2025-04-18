@@ -28,7 +28,7 @@ export REMOTEDATA_USER=twohoursonelife
 export REMOTEDATA_BRANCH=master
 
 export BUILDSDIR=$WORKDIR/builds
-export LIBRARYDIR=$WORKDIR/libraries
+export LIBRARYDIR=$WORKDIR/dependencies
 
 export TESTBUILDFOLDER=$BUILDSDIR
 export TESTBUILDNAME=XLife_test

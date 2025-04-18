@@ -6,12 +6,15 @@ if [ $# -lt 1 ] ; then
 	exit
 fi
 
+sdkdisc=false
 libz=false
 libpng=false
 libsdl=false
 libfreetype=false
 
 for arg in "$@"; do
+    if [[ $arg == "sdkdisc" ]] ; then
+        sdkdisc=true
     if [[ $arg == "libz" ]] ; then
         libz=true
     elif [[ $arg == "libpng" ]] ; then
@@ -38,6 +41,19 @@ then
 fi
 
 cd $LIBRARYDIR
+
+if [ $sdkdisc == "true" ] ; then
+	echo
+	echo "Preparing DiscordSDK..."
+    
+    if [ ! -d discord_game_sdk ]; then
+        wget https://dl-game-sdk.discordapp.net/3.2.1/discord_game_sdk.zip
+        unzip -d discord_game_sdk discord_game_sdk.zip
+        rm discord_game_sdk.zip
+    fi
+    
+    sed -i 's/<Windows.h>/<windows.h>/' ./discord_game_sdk/c/discord_game_sdk.h;
+fi
 
 if [ $libz == "true" ] ; then
 	echo
