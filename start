@@ -31,7 +31,7 @@ function testgame {
     elif [ $platform == "windows" ] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/gameSource/OneLife.exe" "OneLife.exe" 2>/dev/null || cp "$GAMEDIR/gameSource/OneLife" "OneLife.exe"
-        ./OneLife.exe
+        cmd.exe /c start "" "OneLife.exe"
         cd -
     fi
 }
@@ -49,7 +49,7 @@ function testserver {
     elif [ $platform == "windows" ] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/server/OneLifeServer.exe" "OneLifeServer.exe" 2>/dev/null || cp "$GAMEDIR/server/OneLifeServer" "OneLifeServer.exe"
-        ./OneLifeServer.exe
+        cmd.exe /c start "" "OneLifeServer.exe"
         cd -
     fi
 }
