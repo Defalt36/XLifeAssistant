@@ -1,4 +1,4 @@
-<h1>XLifeAssistant</h1>
+<h1>LifeCompiler</h1>
 
 <h2>Usage</h2>
 
