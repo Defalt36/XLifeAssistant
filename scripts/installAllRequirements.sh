@@ -4,7 +4,6 @@
 
 cd $WORKDIR
 
-
 sudo apt-get --assume-yes update
 sudo apt-get --assume-yes install rsync wget unzip git p7zip-full dos2unix net-tools
 sudo apt-get --assume-yes install imagemagick xclip libglu1-mesa-dev libgl1-mesa-dev libsdl1.2-dev
@@ -21,3 +20,5 @@ fi
 cd $SCRIPTSDIR
 
 ./crossInstallLibrary.sh libz libpng libsdl
+
+export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
