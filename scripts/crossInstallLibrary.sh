@@ -15,7 +15,7 @@ libfreetype=false
 for arg in "$@"; do
     if [[ $arg == "sdkdisc" ]] ; then
         sdkdisc=true
-    if [[ $arg == "libz" ]] ; then
+    elif [[ $arg == "libz" ]] ; then
         libz=true
     elif [[ $arg == "libpng" ]] ; then
         libpng=true
@@ -24,10 +24,9 @@ for arg in "$@"; do
     elif [[ $arg == "libfreetype" ]] ; then
         libfreetype=true
     else
-        echo "No supported library called '${1}'."
+        echo "No supported library called '${arg}'."
         exit 1
     fi
-    shift
 done
 
 build="x86_64-linux-gnu"
