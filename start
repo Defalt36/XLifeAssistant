@@ -18,17 +18,17 @@ function defaultsettings {
 }
 
 function testgame {
-    local platform=$1
+    local l_platform=$1
     if [ $# -ne 1 ] ; then
         echo "No parameters provided, assuming: '$TARGETSYSTEM'."
-        platform=$TARGETSYSTEM
+        l_platform=$TARGETSYSTEM
     fi
-    if [ $platform == "linux" ] ; then
+    if [ $l_platform == "linux" ] ; then
         cd $TESTBUILDPATH
         cp $GAMEDIR/gameSource/OneLife OneLife
         ./OneLife
         cd -
-    elif [ $platform == "windows" ] ; then
+    elif [ $l_platform == "windows" ] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/gameSource/OneLife.exe" "OneLife.exe" 2>/dev/null || cp "$GAMEDIR/gameSource/OneLife" "OneLife.exe"
         cmd.exe /c start "" "OneLife.exe"
@@ -36,17 +36,17 @@ function testgame {
     fi
 }
 function testserver {
-    local platform=$1
+    local l_platform=$1
     if [ $# -ne 1 ] ; then
         echo "No parameters provided, assuming: '$TARGETSYSTEM'."
-        platform=$TARGETSYSTEM
+        l_platform=$TARGETSYSTEM
     fi
-    if [ $platform == "linux" ] ; then
+    if [ $l_platform == "linux" ] ; then
         cd $TESTBUILDPATH
         cp $GAMEDIR/server/OneLifeServer OneLifeServer
         ./OneLifeServer
         cd -
-    elif [ $platform == "windows" ] ; then
+    elif [ $l_platform == "windows" ] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/server/OneLifeServer.exe" "OneLifeServer.exe" 2>/dev/null || cp "$GAMEDIR/server/OneLifeServer" "OneLifeServer.exe"
         cmd.exe /c start "" "OneLifeServer.exe"
