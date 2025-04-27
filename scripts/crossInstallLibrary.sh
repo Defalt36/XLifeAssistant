@@ -41,7 +41,7 @@ fi
 
 cd $LIBRARYDIR
 
-if [ $sdkdisc == "true" ] ; then
+if [[ $sdkdisc == "true" ]] ; then
     echo
     echo "Preparing DiscordSDK..."
     
@@ -54,7 +54,7 @@ if [ $sdkdisc == "true" ] ; then
     sed -i 's/<Windows.h>/<windows.h>/' ./discord_game_sdk/c/discord_game_sdk.h;
 fi
 
-if [ $libz == "true" ] ; then
+if [[ $libz == "true" ]] ; then
     echo
     echo "Preparing LibZ..."
     
@@ -74,7 +74,7 @@ if [ $libz == "true" ] ; then
 fi
 
 
-if [ $libpng == "true" ] ; then
+if [[ $libpng == "true" ]] ; then
     #LibPng won't install propely if Zlib isn't installed fist
     echo
     echo "Preparing LibPNG..."
@@ -98,7 +98,7 @@ if [ $libpng == "true" ] ; then
     fi
 fi
 
-if [ $libsdl == "true" ] ; then
+if [[ $libsdl == "true" ]] ; then
     echo
     echo "Preparing LibSDL..."
     
@@ -124,7 +124,7 @@ if [ $libsdl == "true" ] ; then
     fi
 fi
 
-if [ $libfreetype == "true" ] ; then
+if [[ $libfreetype == "true" ]] ; then
     echo
     echo "Preparing FreeType2..."
     

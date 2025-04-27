@@ -12,23 +12,18 @@ source $START_DIR/settings.sh
 
 chmod u+x -R $START_DIR
 
-function defaultsettings {
-    cp -f $START_DIR/defaultsettings.sh $START_DIR/settings.sh
-    echo "settings.sh replaced by defaultsettings.sh"
-}
-
 function testgame {
-    local l_platform=$1
+    local platform=$1
     if [ $# -ne 1 ] ; then
         echo "No parameters provided, assuming: '$TARGETSYSTEM'."
-        l_platform=$TARGETSYSTEM
+        platform=$TARGETSYSTEM
     fi
-    if [ $l_platform == "linux" ] ; then
+    if [[ $platform == "linux" ]] ; then
         cd $TESTBUILDPATH
         cp $GAMEDIR/gameSource/OneLife OneLife
         ./OneLife
         cd -
-    elif [ $l_platform == "windows" ] ; then
+    elif [[ $platform == "windows" ]] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/gameSource/OneLife.exe" "OneLife.exe" 2>/dev/null || cp "$GAMEDIR/gameSource/OneLife" "OneLife.exe"
         cmd.exe /c start "" "OneLife.exe"
@@ -36,17 +31,17 @@ function testgame {
     fi
 }
 function testserver {
-    local l_platform=$1
+    local platform=$1
     if [ $# -ne 1 ] ; then
         echo "No parameters provided, assuming: '$TARGETSYSTEM'."
-        l_platform=$TARGETSYSTEM
+        platform=$TARGETSYSTEM
     fi
-    if [ $l_platform == "linux" ] ; then
+    if [ $platform == "linux" ] ; then
         cd $TESTBUILDPATH
         cp $GAMEDIR/server/OneLifeServer OneLifeServer
         ./OneLifeServer
         cd -
-    elif [ $l_platform == "windows" ] ; then
+    elif [ $platform == "windows" ] ; then
         cd $TESTBUILDPATH
         cp "$GAMEDIR/server/OneLifeServer.exe" "OneLifeServer.exe" 2>/dev/null || cp "$GAMEDIR/server/OneLifeServer" "OneLifeServer.exe"
         cmd.exe /c start "" "OneLifeServer.exe"
@@ -90,13 +85,34 @@ function gitfix {
     sudo ifconfig eth0 mtu 1350
 }
 
+function pathfix {
+    local platform=$1
+    if [ $# -ne 1 ] ; then
+        echo "No parameters provided, assuming: '$TARGETSYSTEM'."
+        platform=$TARGETSYSTEM
+    fi
+    if [[ $platform == "linux" || $platform == "1" ]] ; then
+        if [[ ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
+            export PATH=$(echo "$PATH" | sed -e 's|/usr/i686-w64-mingw32/bin:||')
+        fi
+    elif [[ $platform == "windows" || $platform == "5" ]] ; then
+        if [[ ! ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
+            export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+        fi
+    fi
+}
 
-function xla {
+function life {
     # Update TIMESTAMP everytime we want to run a script
     export TIMESTAMP=$(date '+(%F,%H%M)')
     if [ $# -lt 1 ] ; then
-        echo "Usage: xla [SCRIPT_NAME]"
+        echo "Usage: 'life [SCRIPT_NAME]' or 'life [COMMAND_NAME]'"
     else
+        if [ $# -ge 1 ] ; then
+            if [[ $2 == "linux" || $2 == "windows" ]] ; then
+                pathfix $2
+            fi
+        fi
         if $(find $START_DIR/scripts -iname "$1.sh" -exec false {} +) ; then
             echo "No script '$1' found."
         elif [ $(find $START_DIR/scripts -iname "$1.sh" | wc -l) -ne 1 ] ; then
@@ -117,25 +133,42 @@ function x-cd {
         echo "Parameters: assistant, scripts, minorgems, onelife or onelifedata"
         return
     fi
-    if [ $1 == "assistant" ] ; then
+    if [[ $1 == "assistant" ]] ; then
         cd $ASSISTANTDIR
-    elif [ $1 == "scripts" ] ; then
+    elif [[ $1 == "scripts" ]] ; then
         cd $ASSISTANTDIR/scripts
-    elif [ $1 == "minorgems" ] ; then
+    elif [[ $1 == "minorgems" ]] ; then
         cd $MINORDIR
-    elif [ $1 == "onelife" ] ; then
+    elif [[ $1 == "onelife" ]] ; then
         cd $GAMEDIR
-    elif [ $1 == "onelifedata" ] ; then
+    elif [[ $1 == "onelifedata" ]] ; then
         cd $DATADIR
     fi
 }
 
+function x-default {
+    cp -f $START_DIR/defaultsettings.sh $START_DIR/settings.sh
+    echo "settings.sh replaced by defaultsettings.sh"
+}
+
 function x-platform {
+    local platform=$1
+    if [ $# -ne 1 ] ; then
+        echo "No parameters provided, assuming: '$TARGETCODE'."
+        platform=$TARGETCODE
+    fi
+    if [[ $1 == "linux" ]] ; then
+        platform=1
+    elif [[ $1 == "windows" ]] ; then
+        platform=5
+    fi
     cd $GAMEDIR
-    ./configure
+    ./configure $platform
     cd $GAMEDIR/server
-    ./configure
+    ./configure $platform
     cd $START_DIR
+    
+    pathfix $platform
 }
 
 function x-reconfigure {
@@ -156,7 +189,7 @@ function x-reconfigure {
 }
 
 function x-reload {
-    source $START_DIR/start
+    source $START_DIR/main
 }
 
 
@@ -170,5 +203,5 @@ echo -e "The following scripts are avaliable:\n"
 find $START_DIR/scripts -type f -exec basename -s .sh {} \;
 
 echo
-echo "You can use the xla function to run scripts above."
+echo "You can use the life command to run scripts above."
 echo

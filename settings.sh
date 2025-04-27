@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
-
 export ASSISTANTDIR=$START_DIR
 export SCRIPTSDIR=$ASSISTANTDIR/scripts
 export WORKDIR=$(realpath "$ASSISTANTDIR/..")
@@ -14,6 +12,7 @@ export DATADIR=$WORKDIR/OneLifeData7
 export TIMESTAMP=$(date '+(%F,%H%M)')
 export RELEASENAME=OneLife
 export TARGETSYSTEM=windows
+export TARGETCODE=5;
 
 export REMOTEGAME=OneLife
 export REMOTEGAME_USER=twohoursonelife
@@ -40,11 +39,11 @@ if [ ! -d $LIBRARYDIR ] ; then
     mkdir $LIBRARYDIR
 fi
 
-if [ $TARGETSYSTEM == "windows" ] ; then
-    if [[ ! ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
-        #export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
-        echo -e "\n# add mingw32 binaries to path" >> ~/.bashrc
-        echo 'export PATH="/usr/i686-w64-mingw32/bin:${PATH}"' >> ~/.bashrc
-        source ~/.bashrc
-    fi
-fi
+#if [ $TARGETSYSTEM == "windows" ] ; then
+#    if [[ ! ":$PATH:" == *"/usr/i686-w64-mingw32/bin:"* ]]; then
+#        #export PATH="/usr/i686-w64-mingw32/bin:${PATH}"
+#        echo -e "\n# add mingw32 binaries to path" >> ~/.bashrc
+#        echo 'export PATH="/usr/i686-w64-mingw32/bin:${PATH}"' >> ~/.bashrc
+#        source ~/.bashrc
+#    fi
+#fi

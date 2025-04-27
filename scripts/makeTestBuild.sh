@@ -17,12 +17,12 @@ chmod u+x configure ./configure
 chmod u+x configure ./server/configure
 chmod u+x configure ./gameSource/makeEditor.sh
 
-if [ $target == "linux" ] ; then
+if [[ $target == "linux" ]] ; then
 	./configure 1 || exit 1
 	cd server
 	./configure 1 || exit 1
 	cd ..
-elif [ $target == "windows" ] ; then
+elif [[ $target == "windows" ]] ; then
 	./configure 5 || exit 1
 	cd server
 	./configure 5 || exit 1
@@ -30,9 +30,7 @@ elif [ $target == "windows" ] ; then
 fi
 
 cd gameSource
-
 make
-
 ./makeEditor.sh
 
 cd ../server
@@ -54,10 +52,11 @@ echo 1 > $TESTDIR/settings/tutorialDone.ini
 echo "USER" > $TESTDIR/settings/email.ini
 echo "PASS" > $TESTDIR/settings/password.ini
 
+echo 1 > $TESTDIR/settings/fovEnabled.ini
+echo 1 > $TESTDIR/settings/keyboardActions.ini
+
 echo 0 > $TESTDIR/settings/requireTicketServerCheck.ini
 echo 1 > $TESTDIR/settings/useTestMap.ini
 echo 1 > $TESTDIR/settings/allowVOGMode.ini
 echo 1 > $TESTDIR/settings/allowMapRequests.ini
 echo "USER" > $TESTDIR/settings/vogAllowAccounts.ini
-
-
