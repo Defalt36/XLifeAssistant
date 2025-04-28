@@ -123,6 +123,11 @@ function life {
     fi
 }
 
+function x-autostart {
+    echo -e "\n# Source LifeCompiler by Defalt36" >> ~/.bashrc
+    echo "source "${ASSISTANTDIR}/main"" >> ~/.bashrc
+}
+
 function x-cat {
     find $START_DIR/scripts -iname "$1.sh" -exec cat {} \;
     echo
