@@ -156,6 +156,10 @@ function x-default {
     echo "settings.sh replaced by defaultsettings.sh"
 }
 
+function x-libraries {
+    7z x precompiled_libraries.zip -o"$LIBRARYDIR"
+}
+
 function x-platform {
     local platform=$1
     if [ $# -ne 1 ] ; then
