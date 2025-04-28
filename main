@@ -8,8 +8,12 @@ fi
 
 START_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-source $START_DIR/settings.sh
+if [[ "$START_DIR" == *[[:space:]]* ]]; then
+    echo "Error: This script cannot be run properly if there are spaces in the path to it."
+    exit 1
+fi
 
+source $START_DIR/settings.sh
 chmod u+x -R $START_DIR
 
 function testgame {
