@@ -170,9 +170,9 @@ function x-platform {
         echo "No parameters provided, assuming: '$TARGETCODE'."
         platform=$TARGETCODE
     fi
-    if [[ $1 == "linux" ]] ; then
+    if [[ $1 == "linux" || $1 == "1" ]] ; then
         platform=1
-    elif [[ $1 == "windows" ]] ; then
+    elif [[ $1 == "windows" || $1 == "5" ]] ; then
         platform=5
     fi
     cd $GAMEDIR
