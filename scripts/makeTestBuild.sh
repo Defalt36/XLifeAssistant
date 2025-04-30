@@ -38,6 +38,8 @@ make
 
 cd $SCRIPTSDIR
 
+echo "Gathering Files..."
+
 ./gatherData.sh all $TESTDIR rsync
 ./gatherBuildFiles.sh game $TESTDIR
 ./gatherBuildFiles.sh server $TESTDIR
